@@ -147,6 +147,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         50,
         false
         )
+        timer.after(2500, function () {
+            sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
+        })
     } else if (face == 0) {
         sword = sprites.createProjectileFromSprite(img`
             . 1 . . . . . . . . . . 
@@ -294,6 +297,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         50,
         false
         )
+        timer.after(2500, function () {
+            sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
+        })
     } else if (face == 3) {
         sword = sprites.createProjectileFromSprite(img`
             . . . . . . . . . . c . . . . . 
@@ -394,6 +400,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         50,
         false
         )
+        timer.after(2500, function () {
+            sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
+        })
     }
 })
 controller.down.onEvent(ControllerButtonEvent.Released, function () {
@@ -467,25 +476,19 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile3`, function (sprite, location) {
     tiles.loadMap(tilemapList._pickRandom())
     tiles.placeOnRandomTile(mySprite, assets.tile`myTile4`)
-    for (let index = 0; index < randint(3, 10); index++) {
+    for (let index = 0; index < randint(3, 6); index++) {
         slime = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
+            . . . . . . . . 
+            . . . . . . . . 
+            . . . f f f . . 
+            . . f 6 6 1 f . 
+            . f 6 6 6 6 1 f 
+            f 6 6 6 6 6 6 f 
+            f 6 6 6 6 6 6 f 
+            . f f f f f f . 
             `, SpriteKind.slime)
+        tiles.placeOnRandomTile(slime, assets.tile`myTile`)
+        slime_move()
     }
 })
 controller.right.onEvent(ControllerButtonEvent.Released, function () {
@@ -570,6 +573,11 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+function smartfollowing () {
+    if (true) {
+    	
+    }
+}
 controller.up.onEvent(ControllerButtonEvent.Released, function () {
     animation.stopAnimation(animation.AnimationTypes.All, mySprite)
     face = 2
@@ -629,6 +637,9 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+function slime_move () {
+	
+}
 let slime: Sprite = null
 let sword: Sprite = null
 let mySprite: Sprite = null
